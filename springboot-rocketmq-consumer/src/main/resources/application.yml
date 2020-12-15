@@ -1,0 +1,26 @@
+rocketmq:
+  # nameserver
+  name-server: 172.20.10.9:9876;172.20.10.12:9876
+  # 消费者组名
+#  consumer:
+#    group: my-group
+
+spring:
+  application:
+    name: rocketmq-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.20.10.9:1111
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 9002
+
+#消费者将去访问的微服务名称（注册成功进nacos的微服务提供者）
+service-url:
+  nacos-user-srevice: http://rocketmq-producer

@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: shop-coupon-service
+  datasource:
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.20.10.9:3306/trade?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.20.10.9:1111
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 9001
+
+mybatis:
+  mapperLocations: classpath:com.itheima.shop.mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+rocketmq:
+  name-server: 172.20.10.9:9876;172.20.10.12:9876
+  producer:
+    group: orderProducerGroup
+
+mq:
+  order:
+    consumer:
+      group:
+        name: order_orderTopic_cancel_group
+    topic: orderTopic
+    tag:
+      cancel: order_cancel
+#      confirm: order_confirm

@@ -1,0 +1,22 @@
+rocketmq:
+  # nameserver
+  name-server: 172.20.10.9:9876;172.20.10.12:9876
+  # 发送者组名
+  producer:
+    group: my-group
+
+spring:
+  application:
+    name: rocketmq-producer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.20.10.9:1111
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 9001
